@@ -3,13 +3,13 @@ package models;
 public class User {
 
     private String email;
-    private int active;
+    private boolean active;
     private String first_name;
     private String last_name;
     private String password;
     private int role;
 
-    public User(String email, int active, String first_name, String last_name, String password, int role) {
+    public User(String email, boolean active, String first_name, String last_name, String password, int role) {
         this.email = email;
         this.active = active;
         this.first_name = first_name;
@@ -26,11 +26,11 @@ public class User {
         this.email = email;
     }
 
-    public int getActive() {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(int active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
