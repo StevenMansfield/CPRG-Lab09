@@ -8,71 +8,88 @@
         <title>User Management</title>
     </head>
     <body>
-        <form method="POST" action="add_user" id="add_form">            
-            <h2 class="add_title">Add User</h2>
-            <div class="add_first_input">
-                <label>First Name</label>
-                <input id="email" type="text" name="add_email" placeholder=" ">
-            </div>
-            <div>
-                <label>First Name</label>
-                <input type="text" name="add_first_name">
-            </div>
-            <div>
-                <label>Last Name</label>
-                <input type="text" name="add_last_name">
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="text" name="add_password">
-            </div>
-            <div>
-                <select name="user_type">
-                    <option value="sys_admin">System Admin</option>
-                    <option value="reg_user">Regular User</option>
-                    <option value="comp_admin">Company Admin</option>
-                </select> 
-            </div>
-            <div>
-            <input type="submit" value="Save">
-            <input type="hidden" name="action" value="save">
-            </div>
-        </form>
         
-        <h2 class="manage_title">Manage Users</h2>
         
-        <form method="POST" action="add_user" id="edit_form">
-            <h2 class="edit_title">Edit User</h2>
-            <div>
-                <label>Email</label>
-                <input type="text" name="add_email">
+        <div id="add_container">
+            <form method="POST" action="add_user" id="add_form">            
+                <h2 id="add_title">Add User</h2>
+                <div>
+                    <label>Email</label>
+                    <input type="text" name="add_email">
+                </div>
+                <div>
+                    <label>First Name</label>
+                    <input type="text" name="add_first_name">
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" name="add_last_name">
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="text" name="add_password">
+                </div>
+                <div>
+                    <select name="user_type">
+                        <option value="sys_admin">System Admin</option>
+                        <option value="reg_user">Regular User</option>
+                        <option value="comp_admin">Company Admin</option>
+                    </select> 
+                </div>
+                <div>
+                <input type="submit" value="Save">
+                <input type="hidden" name="action" value="save">
+                </div>
+            </form>
+        </div>
+        
+        
+        
+        
+        <div id="manage_container">
+            <h2 id="manage_title">Manage Users</h2>
+            <div id='head_manage_users' class='header'>
+                <span id='head_email'>Email</span>
+                <span id='head_first_name'>First Name</span>
+                <span id='head_last_name'>Last Name</span>
+                <span id='head_role'>Role</span>
+                <span id='head_edit'>Edit</span>
+                <span id='head_delete'>Delete</span>
             </div>
-            <div>
-                <label>First Name</label>
-                <input type="text" name="add_first_name">
-            </div>
-            <div>
-                <label>Last Name</label>
-                <input type="text" name="add_last_name">
-            </div>
-            <div>
-                <select name="user_type">
-                    <option value="sys_admin">System Admin</option>
-                    <option value="reg_user">Regular User</option>
-                    <option value="comp_admin">Company Admin</option>
-                </select> 
-            </div>
-            <div>
-            <input type="submit" value="Save">
-            <input type="hidden" name="action" value="save">
-            </div>
-        </form>
+        </div>
+        
+        
+        
+        
+        <div id="edit_container">
+            <form method="POST" action="add_user" id="edit_form">
+                <h2 id="edit_title">Edit User</h2>
+                <div>
+                    <label>Email</label>
+                    <input type="text" name="add_email" readonly>
+                </div>
+                <div>
+                    <label>First Name</label>
+                    <input type="text" name="add_first_name">
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" name="add_last_name">
+                </div>
+                <div>
+                    <select name="user_type">
+                        <option value="sys_admin">System Admin</option>
+                        <option value="reg_user">Regular User</option>
+                        <option value="comp_admin">Company Admin</option>
+                    </select> 
+                </div>
+                <div>
+                <input type="submit" value="Save">
+                <input type="hidden" name="action" value="save">
+                </div>
+            </form>
+        </div>
+        
+        
     </body>
 </html>
-
-<!--            <h2 class="add_title">Add User</h2>
-            <div class="entry_container first_input">
-                <input id="email" class="input" type="text" name="add_email" placeholder=" ">
-                <div class="cut"></div>
-                <label for="email" class="placeholder">Email</label>
-            </div>-->
