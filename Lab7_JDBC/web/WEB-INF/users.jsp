@@ -8,11 +8,11 @@
         <title>User Management</title>
     </head>
     <body>
-        <h2 class="add_title">Add User</h2>
-        <form method="POST" action="add_user">
-            <div>
-                <label>Email</label>
-                <input type="text" name="add_email">
+        <form method="POST" action="add_user" id="add_form">            
+            <h2 class="add_title">Add User</h2>
+            <div class="add_first_input">
+                <label>First Name</label>
+                <input id="email" type="text" name="add_email" placeholder=" ">
             </div>
             <div>
                 <label>First Name</label>
@@ -34,15 +34,15 @@
                 </select> 
             </div>
             <div>
-            <input type="submit" value="Add">
+            <input type="submit" value="Save">
             <input type="hidden" name="action" value="save">
             </div>
         </form>
         
         <h2 class="manage_title">Manage Users</h2>
         
-       <h2 class="edit_title">Edit User</h2>
-        <form method="POST" action="add_user">
+        <form method="POST" action="add_user" id="edit_form">
+            <h2 class="edit_title">Edit User</h2>
             <div>
                 <label>Email</label>
                 <input type="text" name="add_email">
@@ -63,9 +63,16 @@
                 </select> 
             </div>
             <div>
-            <input type="submit" value="Add">
+            <input type="submit" value="Save">
             <input type="hidden" name="action" value="save">
             </div>
         </form>
     </body>
 </html>
+
+<!--            <h2 class="add_title">Add User</h2>
+            <div class="entry_container first_input">
+                <input id="email" class="input" type="text" name="add_email" placeholder=" ">
+                <div class="cut"></div>
+                <label for="email" class="placeholder">Email</label>
+            </div>-->
