@@ -14,7 +14,7 @@ public class ConnectionPool {
             //retrieves the context.xml file
             InitialContext ic = new InitialContext();
             //looking for this environment variable. This must match the name in context.xml (after the env/). This will change from project to project.  
-            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/notesdb");
+            dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/userdb");
         } catch (NamingException e) {
             System.out.println(e);
         }
