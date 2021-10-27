@@ -62,7 +62,7 @@
         
         
         <div id="edit_container">
-            <form method="POST" action="add_user" id="edit_form">
+            <form method="POST" action="" id="edit_form">
                 <h2 id="edit_title">Edit User</h2>
                 <div>
                     <label>Email</label>
