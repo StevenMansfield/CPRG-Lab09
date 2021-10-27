@@ -5,6 +5,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="./sources/css/users.css"></link>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
         <title>User Management</title>
     </head>
     <body>
@@ -14,20 +17,20 @@
             <form method="POST" action="" id="add_form">            
                 <h2 id="add_title">Add User</h2>
                 <div>
+                    <input type="text" name="add_email" class="entry" required>
                     <label>Email</label>
-                    <input type="text" name="add_email">
                 </div>
                 <div>
+                    <input type="text" name="add_first_name" class="entry" required>
                     <label>First Name</label>
-                    <input type="text" name="add_first_name">
                 </div>
                 <div>
+                    <input type="text" name="add_last_name" class="entry" required>
                     <label>Last Name</label>
-                    <input type="text" name="add_last_name">
                 </div>
                 <div>
+                    <input type="text" name="add_password" class="entry" required>
                     <label>Password</label>
-                    <input type="text" name="add_password">
                 </div>
                 <div>
                     <select name="add_user_type">
@@ -37,7 +40,7 @@
                     </select> 
                 </div>
                 <div>
-                <input type="submit" value="Save">
+                <input type="submit" value="Save" id="add_save">
                 <input type="hidden" name="action" value="add_save">
                 </div>
             </form>
@@ -65,16 +68,16 @@
             <form method="POST" action="" id="edit_form">
                 <h2 id="edit_title">Edit User</h2>
                 <div>
-                    <label>Email</label>
-                    <input type="text" name="edit_email" readonly>
+                    <input type="text" name="edit_email" class="entry" readonly required>
+                     <label>Email</label>
                 </div>
                 <div>
+                    <input type="text" name="edit_first_name" class="entry" required>
                     <label>First Name</label>
-                    <input type="text" name="edit_first_name">
                 </div>
                 <div>
+                    <input type="text" name="edit_last_name" class="entry" required>
                     <label>Last Name</label>
-                    <input type="text" name="edit_last_name">
                 </div>
                 <div>
                     <select name="edit_user_type">
@@ -84,12 +87,13 @@
                     </select> 
                 </div>
                 <div>
-                <input type="submit" value="Save">
+                <input type="submit" value="Save" id="edit_save">
                 <input type="hidden" name="action" value="edit_save">
                 </div>
             </form>
         </div>
-        
         <h2>${message}</h2>
+        
+        
     </body>
 </html>
