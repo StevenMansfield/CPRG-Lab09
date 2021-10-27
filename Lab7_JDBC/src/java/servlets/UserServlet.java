@@ -56,9 +56,10 @@ public class UserServlet extends HttpServlet {
             switch (myAction) {
                 case "add_save": {
                     try {
-                        request.setAttribute("message", "email is " + email);
-                        //userService.insert(email, true, firstName, lastName, password, userTypeInt);
+                        userService.insert(email, true, firstName, lastName, password, userTypeInt);
+                        request.setAttribute("message", "added user " + email + " successfully");
                     } catch (Exception ex) {
+                        request.setAttribute("message", "added user " + email + " not successful");
                         java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
