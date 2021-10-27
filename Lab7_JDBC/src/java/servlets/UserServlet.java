@@ -1,6 +1,5 @@
 package servlets;
 
-import com.sun.istack.internal.logging.Logger;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,9 +15,9 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         UserService us = new UserService();
-        
+
         List<User> users = null;
         try {
             users = us.getAll();
@@ -26,12 +25,12 @@ public class UserServlet extends HttpServlet {
             java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("users", users);
-        
+
         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
         return;
     }
 
-@Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String myAction = request.getParameter("action");
@@ -40,12 +39,32 @@ public class UserServlet extends HttpServlet {
         String lastName = request.getParameter("add_last_name");
         String password = request.getParameter("add_password");
         String userType = request.getParameter("add_user_type");
+        int userTypeInt = 0;
+
+        switch (userType) {
+            case "sys_admin": userTypeInt = 1;
+                break;
+            case "reg_user": userTypeInt = 2;
+                break;
+            case "comp_admin": userTypeInt = 3;
+                break;
+        }
+
         UserService userService = new UserService();
 
-        if (myAction != null){
+        if (myAction != null) {
             switch (myAction) {
-                case "add_save": break;
-                case "edit": break;
+                case "add_save": {
+                    try {
+                        request.setAttribute("message", "email is " + email);
+                        //userService.insert(email, true, firstName, lastName, password, userTypeInt);
+                    } catch (Exception ex) {
+                        java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                break;
+                case "edit_save":
+                    break;
             }
         }
 

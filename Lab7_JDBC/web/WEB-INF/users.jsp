@@ -11,7 +11,7 @@
         
         
         <div id="add_container">
-            <form method="POST" action="add_user" id="add_form">            
+            <form method="POST" action="" id="add_form">            
                 <h2 id="add_title">Add User</h2>
                 <div>
                     <label>Email</label>
@@ -90,6 +90,6 @@
             </form>
         </div>
         
-        
+        <h2>${message}</h2>
     </body>
 </html>
