@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/Lab7_JDBC">
 <Resource
-        name="jdbc/notesdb"
-        url="jdbc:mysql://localhost:3307/userdb" 
+        name="jdbc/userdb"
+        url="jdbc:mysql://localhost:3306/userdb" 
         username="root"
         password="password"
         maxActive="100"
