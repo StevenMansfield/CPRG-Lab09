@@ -36,7 +36,7 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("message", "error");
         }
         
-                try {
+        try {
             HTTPSession session = request.getSession();
             String lastName = (String) session.getAttribute("add_last_name");
             List<User> users = us.getAll(lastName);
