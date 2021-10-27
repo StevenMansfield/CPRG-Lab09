@@ -30,7 +30,7 @@
                     <input type="text" name="add_password">
                 </div>
                 <div>
-                    <select name="user_type">
+                    <select name="add_user_type">
                         <option value="sys_admin">System Admin</option>
                         <option value="reg_user">Regular User</option>
                         <option value="comp_admin">Company Admin</option>
@@ -38,7 +38,7 @@
                 </div>
                 <div>
                 <input type="submit" value="Save">
-                <input type="hidden" name="action" value="save">
+                <input type="hidden" name="action" value="add_save">
                 </div>
             </form>
         </div>
@@ -66,18 +66,18 @@
                 <h2 id="edit_title">Edit User</h2>
                 <div>
                     <label>Email</label>
-                    <input type="text" name="add_email" readonly>
+                    <input type="text" name="edit_email" readonly>
                 </div>
                 <div>
                     <label>First Name</label>
-                    <input type="text" name="add_first_name">
+                    <input type="text" name="edit_first_name">
                 </div>
                 <div>
                     <label>Last Name</label>
-                    <input type="text" name="add_last_name">
+                    <input type="text" name="edit_last_name">
                 </div>
                 <div>
-                    <select name="user_type">
+                    <select name="edit_user_type">
                         <option value="sys_admin">System Admin</option>
                         <option value="reg_user">Regular User</option>
                         <option value="comp_admin">Company Admin</option>
@@ -85,7 +85,7 @@
                 </div>
                 <div>
                 <input type="submit" value="Save">
-                <input type="hidden" name="action" value="save">
+                <input type="hidden" name="action" value="edit_save">
                 </div>
             </form>
         </div>

@@ -9,6 +9,9 @@ public class User {
     private String password;
     private int role;
 
+    public User() {
+    }
+    
     public User(String email, boolean active, String first_name, String last_name, String password, int role) {
         this.email = email;
         this.active = active;

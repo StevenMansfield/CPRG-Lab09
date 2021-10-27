@@ -1,3 +1,22 @@
 @media all {
     
+    body {
+        align-items: center;
+    }
+    
+    #add_container, #edit_container {
+        width: 300px;
+        float: left;
+        margin: 10px;
+        border: 6px solid beige;
+    }
+    
+    #manage_container {
+        width: 600px;
+        float: left;
+        margin: 10px;
+        border: 6px solid beige;
+    }
+    
+    
 }
