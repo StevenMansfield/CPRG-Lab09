@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.User;
 import services.UserService;
 
 public class UserServlet extends HttpServlet {
@@ -18,7 +19,12 @@ public class UserServlet extends HttpServlet {
         
         UserService us = new UserService();
         
-        List<User> users = us.getAll();
+        List<User> users = null;
+        try {
+            users = us.getAll();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.setAttribute("users", users);
         
         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
