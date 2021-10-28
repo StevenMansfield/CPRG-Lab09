@@ -110,12 +110,13 @@ public class UserServlet extends HttpServlet {
                         User editUser = userService.get(editEmail);
                         
                         // populate the fields the current values
+                        // not sure how to automatically populate the radio buttons or dropdowns so code is commented out for now
                         request.setAttribute("edit_email", editEmail);
-                        request.setAttribute("edit_active", editUser.getActive());
-                        request.setAttribute("edit_first_name", editUser.getFirst_name());
-                        request.setAttribute("edit_last_name", editUser.getLast_name());
+                        // request.setAttribute("edit_active", editUser.getActive());
+                        request.setAttribute("edit_first_name", editUser.getFirstName());
+                        request.setAttribute("edit_last_name", editUser.getLastName());
                         request.setAttribute("edit_password", editUser.getPassword());
-                        request.setAttribute("edit_user_type", editUser.getRole());
+                        // request.setAttribute("edit_user_type", editUser.getRole());
                     } catch (Exception ex) {
                         
                     }
@@ -127,7 +128,11 @@ public class UserServlet extends HttpServlet {
                             editEmail = request.getParameter("edit_email");
                             String editFirstName = request.getParameter("edit_first_name");
                             String editLastName = request.getParameter("edit_last_name");
-                            boolean editActive = request.getParameter("edit_active");
+                            String editActive = request.getParameter("status");
+                            boolean active = false;
+                            if (editActive.equals("active")) {
+                                active = true;
+                            }
                             String editPassword = request.getParameter("edit_password");
                             String editUserType = request.getParameter("edit_user_type");
                             // assigns an int corresponding to the relevant role
@@ -144,7 +149,7 @@ public class UserServlet extends HttpServlet {
                                     break;
                                 }
                                 // updates the database with the new info
-                            userService.update(editEmail, editActive, editFirstName, editLastName, editPassword, editRole);
+                            userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
                         } catch (Exception ex){
                             
                         }
