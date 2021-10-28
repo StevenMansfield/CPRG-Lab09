@@ -72,23 +72,35 @@ public class UserServlet extends HttpServlet {
         if (myAction != null) {
             switch (myAction) {
                 case "add_save": {
-                    if (email == null || email.length() != 0) {
-                        String regex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-                        Pattern pattern = Pattern.compile(regex);
-                        Matcher matcher = pattern.matcher(email);
-                        if (matcher.matches()) {
-                            try {
-                                userService.insert(email, true, firstName, lastName, password, userTypeInt);
-                                request.setAttribute("message", "added user " + email + " successfully");
-                            } catch (Exception ex) {
-                                request.setAttribute("message", "user " + email + " not successfully added. DB error");
-                                java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        } else {
-                            request.setAttribute("message", "user " + email + " not successfully added. Check your email");
-                        }
+                    Boolean valid = false;
+                    String regex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(email);
+                    if (matcher.matches()) {
+                        valid = true;
+                    }
+                    regex = "^[a-zA-Z0-9._-]{2,}$";
+                    pattern = Pattern.compile(regex);
+                    matcher = pattern.matcher(firstName);
+                    if (!matcher.matches()) {
+                        valid = false;
+                    }
+                    matcher = pattern.matcher(lastName);
+                    if (!matcher.matches()) {
+                        valid = false;
                     }
 
+                    if (valid) {
+                        try {
+                            userService.insert(email, true, firstName, lastName, password, userTypeInt);
+                            request.setAttribute("message", "added user " + email + " successfully");
+                        } catch (Exception ex) {
+                            request.setAttribute("message", "user " + email + " not successfully added. DB error");
+                            java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        request.setAttribute("message", "user " + email + " not successfully added. Input not valid");
+                    }
                 }
                 break;
                 case "edit_user":
@@ -140,7 +152,9 @@ public class UserServlet extends HttpServlet {
             }
         }
 
-        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+        getServletContext()
+                .getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+
         return;
     }
 }

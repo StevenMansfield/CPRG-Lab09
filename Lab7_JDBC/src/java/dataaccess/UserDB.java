@@ -25,11 +25,11 @@ public class UserDB {
             while (rs.next()) {
                 String email = rs.getString(1);
                 boolean active = rs.getBoolean(2);
-                String first_name = rs.getString(3);
-                String last_name = rs.getString(4);
+                String firstName = rs.getString(3);
+                String lastName = rs.getString(4);
                 String password = rs.getString(5);
                 int role = rs.getInt(6);
-                User user = new User(email, active, first_name, last_name, password, role);
+                User user = new User(email, active, firstName, lastName, password, role);
                 users.add(user);
             }
         } finally {
@@ -55,11 +55,11 @@ public class UserDB {
             rs = ps.executeQuery();
             if (rs.next()) {
                 boolean active = rs.getBoolean(2);
-                String first_name = rs.getString(3);
-                String last_name = rs.getString(4);
+                String firstName = rs.getString(3);
+                String lastName = rs.getString(4);
                 String password = rs.getString(5);
                 int role = rs.getInt(6);
-                user = new User(email, active, first_name, last_name, password, role);
+                user = new User(email, active, firstName, lastName, password, role);
             }
         } finally {
             DBUtil.closeResultSet(rs);
@@ -80,8 +80,8 @@ public class UserDB {
             ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
             ps.setBoolean(2, user.getActive());
-            ps.setString(3, user.getFirst_name());
-            ps.setString(4, user.getLast_name());
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
             ps.setString(5, user.getPassword());
             ps.setInt(6, user.getRole());
             ps.executeUpdate();
@@ -100,8 +100,8 @@ public class UserDB {
         try {
             ps = con.prepareStatement(sql);
             ps.setBoolean(1, user.getActive());
-            ps.setString(2, user.getFirst_name());
-            ps.setString(3, user.getLast_name());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
             ps.setString(4, user.getPassword());
             ps.setInt(5, user.getRole());
             ps.setString(6, user.getEmail());

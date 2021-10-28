@@ -48,18 +48,37 @@
         
         
         
-        
-        <div id="manage_container">
-            <h2 id="manage_title">Manage Users</h2>
-            <div id='head_manage_users' class='header'>
-                <span id='head_email'>Email</span>
-                <span id='head_first_name'>First Name</span>
-                <span id='head_last_name'>Last Name</span>
-                <span id='head_role'>Role</span>
-                <span id='head_edit'>Edit</span>
-                <span id='head_delete'>Delete</span>
+        <form method="POST" action="">
+            <div id="manage_container">
+                <h2 id="manage_title">Manage Users</h2>
+                <div id='head_manage_users' class='header'>
+                    <span id='head_email'>Email</span>
+                    <span id='head_first_name'>First Name</span>
+                    <span id='head_last_name'>Last Name</span>
+                    <span id='head_role'>Role</span>
+                    <span id='head_edit'>Edit</span>
+                    <span id='head_delete'>Delete</span>
+                </div>
+                <div>
+                    <c:forEach var="user" items="${users}">
+                        <div id="row_manage_users">
+                            <span class='user_email'>${user.getEmail()}</span>
+                            <span class='user_first_name'>${user.getFirstName()}</span>
+                            <span class='user_last_name'>${user.getLastName()}</span>
+                            <span class='user_role'>${user.getRole()}</span>
+                            <span class='user_edit'>
+                                <input type="submit" value="Edit">
+                                <input type="hidden" name="action" value="edit_user">
+                            </span>
+                            <span class='user_delete'>
+                                <input type="submit" value="Delete">
+                                <input type="hidden" name="action" value="delete_user">
+                            </span>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
-        </div>
+        </form>
         
         
         
@@ -78,6 +97,10 @@
                 <div>
                     <input type="text" name="edit_last_name" class="entry" required>
                     <label>Last Name</label>
+                </div>
+                <div>
+                    <input type="text" name="edit_password" class="entry" required>
+                    <label>Password</label>
                 </div>
                 <div>
                     <select name="edit_user_type">
