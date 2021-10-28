@@ -71,7 +71,7 @@
                             <span class='user_edit'>
                                 <input type="image" src="./sources/images/pencil.png" alt="Edit" width="15" height="15">
                                 <input type="hidden" name="action" value="edit_user">
-                                <input type="hidden" name="edit_email" value="${user.getEmail()}">
+                                <input type="hidden" name="user_email" value="${user.getEmail()}">
                             </span>
                             <span class='user_delete'>
                                 <input type="image" src="./sources/images/trash.png" alt="Delete" width="15" height="15">
@@ -91,19 +91,19 @@
             <form method="POST" action="" id="edit_form">
                 <h2 id="edit_title">Edit User</h2>
                 <div>
-                    <input type="text" name="edit_email" class="entry" readonly required>
+                    <input type="text" name="edit_email" class="entry" value="${edit_email}" readonly required>
                     <label class="input_label">Email</label>
                 </div>
                 <div>
-                    <input type="text" name="edit_first_name" class="entry" required>
+                    <input type="text" name="edit_first_name" class="entry" value="${edit_first_name}" required>
                     <label class="input_label">First Name</label>
                 </div>
                 <div>
-                    <input type="text" name="edit_last_name" class="entry" required>
+                    <input type="text" name="edit_last_name" class="entry" value="${edit_last_name}" required>
                     <label class="input_label">Last Name</label>
                 </div>
                 <div>
-                    <input type="text" name="edit_password" class="entry" required>
+                    <input type="text" name="edit_password" class="entry" value="${edit_password}" required>
                     <label class="input_label">Password</label>
                 </div>
                 <div>

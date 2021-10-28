@@ -106,7 +106,7 @@ public class UserServlet extends HttpServlet {
                     try {
                         editEmail = request.getParameter("user_email");
                         
-                        
+                        request.setAttribute("message", "Email is " + editEmail);
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
 
