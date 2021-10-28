@@ -46,9 +46,13 @@
         width: 150px;
     }
     
-    #head_role, .user_role, #head_edit, .user_edit, #head_delete, .user_delete {
-        width: 75px;
+    #head_role, .user_role, #head_status, .user_status {
+        width: 100px;
     } 
+    
+    #head_edit, .user_edit, #head_delete, .user_delete {
+        width: 50px;
+    }
     
     h2 {
         text-align: center;

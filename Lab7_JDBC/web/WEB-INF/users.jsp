@@ -56,6 +56,7 @@
                     <span id='head_first_name'>First Name</span>
                     <span id='head_last_name'>Last Name</span>
                     <span id='head_role'>Role</span>
+                    <span id='head_status'>Status</span>
                     <span id='head_edit'>Edit</span>
                     <span id='head_delete'>Delete</span>
                 </div>
@@ -66,12 +67,13 @@
                             <span class='user_first_name'>${user.getFirstName()}</span>
                             <span class='user_last_name'>${user.getLastName()}</span>
                             <span class='user_role'>${user.getRole()}</span>
+                            <span class='user_status'>${user.getActive()}</span>
                             <span class='user_edit'>
-                                <input type="image" src="./sources/images/pencil.png" alt="Submit" width="15" height="15">
+                                <input type="image" src="./sources/images/pencil.png" alt="Edit" width="15" height="15">
                                 <input type="hidden" name="action" value="edit_user">
                             </span>
                             <span class='user_delete'>
-                                <input type="submit" value="Delete">
+                                <input type="image" src="./sources/images/trash.png" alt="Delete" width="15" height="15">
                                 <input type="hidden" name="action" value="delete_user">
                             </span>
                         </div>
