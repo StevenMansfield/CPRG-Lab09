@@ -50,7 +50,7 @@
         width: 150px;
     }
     
-    #head_role, .user_role, #head_edit, .user_edit, #head_delete, .user_delete {
+    #head_role, .user_role, #head_edit, .user_edit, #head_status, .user_status, #head_delete, .user_delete {
         width: 75px;
     } 
     
@@ -97,5 +97,9 @@
     input:focus ~ .input_label, 
     input:not(:focus):valid ~ .input_label {
         top: -3.5px;
+    }
+    
+    span {
+        vertical-align: middle; 
     }
 }
