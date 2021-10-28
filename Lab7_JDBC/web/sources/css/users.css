@@ -8,7 +8,7 @@
     }
     
     #add_container, #edit_container {
-        width: 300px;
+        width: 20%;
         float: left;
         margin: 10px;
         background: #b2ce9e;
@@ -18,7 +18,7 @@
     }
     
     #manage_container {
-        width: 1000px;
+        width: 80%;
         float: left;
         margin: 10px;
         background: #b2ce9e;
