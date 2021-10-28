@@ -69,7 +69,7 @@
         padding-top: 10px; 
     }
     
-    label {
+    .input_label {
         position: absolute;
         pointer-events: none;
         left: 15px;
@@ -90,8 +90,8 @@
         margin-right: 40px;
     }
     
-    input:focus ~ label, 
-    input:not(:focus):valid ~ label {
+    input:focus ~ .input_label, 
+    input:not(:focus):valid ~ .input_label {
         top: -3.5px;
     }
 }
