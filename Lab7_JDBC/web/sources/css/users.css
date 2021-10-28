@@ -95,8 +95,11 @@
     }
     
     input:focus ~ .input_label, 
-    input:not(:focus):valid ~ .input_label {
+    input:not(:focus):valid ~ .input_label,
+    .readonly_box:read-only:valid ~ .input_label {
         top: -3.5px;
+        left: 3px;
+        font-size: 12px;
     }
     
     span {
