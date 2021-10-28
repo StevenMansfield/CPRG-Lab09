@@ -60,16 +60,16 @@
                 <span id='head_delete'>Delete</span>
             </div>
             <div>
-            <c:forEach var="user" items="${users}">
-                <div id="row_manage_users">
-                    <span id='head_email'>${user.getEmail()}</span>
-                    <span id='head_first_name'>${user.getFirst_name()}</span>
-                    <span id='head_last_name'>${user.getLast_name()}</span>
-                    <span id='head_role'>${user.getRole()}</span>
-                    <span id='head_edit'>Pencil</span>
-                    <span id='head_delete'>Delete</span>
-                <div>
-            </c:forEach>
+                <c:forEach var="user" items="${users}">
+                    <div id="row_manage_users">
+                        <span class='head_email'>${user.getEmail()}</span>
+                        <span class='head_first_name'>${user.getFirstName()}</span>
+                        <span class='head_last_name'>${user.getLastName()}</span>
+                        <span class='head_role'>${user.getRole()}</span>
+                        <span class='head_edit'><a href="users?action=edit"><img alt="Edit Pencil" src="./sources/images/pencil.htm"></span>
+                        <span class='head_delete'>Delete</span>
+                    <div>
+                </c:forEach>
             </div>
         </div>
         
