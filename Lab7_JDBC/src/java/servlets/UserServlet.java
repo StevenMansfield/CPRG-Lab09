@@ -1,9 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,14 +41,6 @@ public class UserServlet extends HttpServlet {
         int userTypeInt = 0;
 
         UserService userService = new UserService();
-
-        List<User> users = null;
-        try {
-            users = userService.getAll();
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        request.setAttribute("users", users);
 
         if (myAction != null) {
             switch (myAction) {
@@ -157,7 +147,15 @@ public class UserServlet extends HttpServlet {
                     break;
             }
         }
-
+        
+        List<User> usersList = null;
+        try {
+            usersList = userService.getAll();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("users", usersList);
+        
         getServletContext()
                 .getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
