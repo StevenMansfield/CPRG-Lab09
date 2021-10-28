@@ -67,7 +67,7 @@
                             <span class='user_last_name'>${user.getLastName()}</span>
                             <span class='user_role'>${user.getRole()}</span>
                             <span class='user_edit'>
-                                <input type="submit" value="Edit">
+                                <input type="image" src="./sources/images/pencil.png" alt="Submit" width="15" height="15">
                                 <input type="hidden" name="action" value="edit_user">
                             </span>
                             <span class='user_delete'>
