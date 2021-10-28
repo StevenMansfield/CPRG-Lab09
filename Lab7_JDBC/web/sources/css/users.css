@@ -4,14 +4,16 @@
         display: flex; 
         justify-content: center; 
         font-family: 'Open Sans', sans-serif;
+        background-color: #233957;
     }
     
     #add_container, #edit_container {
         width: 300px;
         float: left;
         margin: 10px;
-        background: aqua;
+        background: #b2ce9e;
         border-radius: 10px; 
+        border: 10px solid #f8f5e1;
         padding: 10px;
     }
     
@@ -19,8 +21,9 @@
         width: 1000px;
         float: left;
         margin: 10px;
-        background: aqua;
-        border-radius: 10px; 
+        background: #b2ce9e;
+        border-radius: 10px;
+        border: 10px solid #f8f5e1;
     }
     
     div#head_manage_users span, div#row_manage_users span {
@@ -34,7 +37,8 @@
     }
     
     #head_manage_users {
-        background-color: lightblue;
+        background-color: #f8f5e1;
+        font-size: 1.1em;
     }
     
     #head_email, .user_email {
@@ -46,13 +50,9 @@
         width: 150px;
     }
     
-    #head_role, .user_role, #head_status, .user_status {
-        width: 100px;
+    #head_role, .user_role, #head_edit, .user_edit, #head_delete, .user_delete {
+        width: 75px;
     } 
-    
-    #head_edit, .user_edit, #head_delete, .user_delete {
-        width: 50px;
-    }
     
     h2 {
         text-align: center;
