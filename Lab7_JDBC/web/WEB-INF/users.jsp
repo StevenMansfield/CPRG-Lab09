@@ -71,6 +71,7 @@
                             <span class='user_edit'>
                                 <input type="image" src="./sources/images/pencil.png" alt="Edit" width="15" height="15">
                                 <input type="hidden" name="action" value="edit_user">
+                                <input type="hidden" name="edit_email" value="${user.getEmail()}">
                             </span>
                             <span class='user_delete'>
                                 <input type="image" src="./sources/images/trash.png" alt="Delete" width="15" height="15">

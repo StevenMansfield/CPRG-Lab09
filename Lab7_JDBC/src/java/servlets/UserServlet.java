@@ -105,6 +105,8 @@ public class UserServlet extends HttpServlet {
                 case "edit_user":
                     try {
                         editEmail = request.getParameter("user_email");
+                        
+                        
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
 
