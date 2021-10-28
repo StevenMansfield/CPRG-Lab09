@@ -92,10 +92,10 @@ public class UserServlet extends HttpServlet {
                     }
                 }
                 break;
-                case "edit_user":
+                case "edit_user": {
                     try {
                         editEmail = request.getParameter("user_email");
-                        
+
                         request.setAttribute("message", "Email is " + editEmail);
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
@@ -111,8 +111,9 @@ public class UserServlet extends HttpServlet {
                     } catch (Exception ex) {
 
                     }
-                    break;
-                case "save_edits":
+                }
+                break;
+                case "edit_save": {
                     try {
                         // get the fields in the edit window
 
@@ -141,13 +142,14 @@ public class UserServlet extends HttpServlet {
                         }
                         // updates the database with the new info
                         userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
+                        request.setAttribute("message", "edit user " + editEmail + " successfully");
                     } catch (Exception ex) {
 
                     }
-                    break;
+                }
+                break;
             }
         }
-        
         List<User> usersList = null;
         try {
             usersList = userService.getAll();
@@ -155,7 +157,7 @@ public class UserServlet extends HttpServlet {
             java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("users", usersList);
-        
+
         getServletContext()
                 .getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
 
