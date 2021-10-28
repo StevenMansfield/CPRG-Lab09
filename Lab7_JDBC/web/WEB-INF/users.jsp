@@ -92,7 +92,10 @@
                 </div>
             </form>
         </div>
-        <h2>${message}</h2>
+        <div id="message_box"
+            <h2>${message}</h2>
+            <h2> hi</h2>
+        </div>
         
         
     </body>

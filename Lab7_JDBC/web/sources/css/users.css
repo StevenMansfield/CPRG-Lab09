@@ -23,6 +23,12 @@
         border-radius: 10px; 
     }
     
+    #message_box {
+        position: absolute; 
+        float: left; 
+        margin-top:700px;
+    }
+    
     #head_manage_users {
         background-color: lightblue
     }
