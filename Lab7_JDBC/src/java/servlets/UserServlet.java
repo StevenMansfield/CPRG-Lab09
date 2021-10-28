@@ -38,26 +38,9 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String myAction = request.getParameter("action");
-        String email = request.getParameter("add_email");
-        String firstName = request.getParameter("add_first_name");
-        String lastName = request.getParameter("add_last_name");
-        String password = request.getParameter("add_password");
-        String userType = request.getParameter("add_user_type");
         String editEmail = "";
-        
-        int userTypeInt = 0;
 
-        switch (userType) {
-            case "sys_admin":
-                userTypeInt = 1;
-                break;
-            case "reg_user":
-                userTypeInt = 2;
-                break;
-            case "comp_admin":
-                userTypeInt = 3;
-                break;
-        }
+        int userTypeInt = 0;
 
         UserService userService = new UserService();
 
@@ -72,6 +55,22 @@ public class UserServlet extends HttpServlet {
         if (myAction != null) {
             switch (myAction) {
                 case "add_save": {
+                    String email = request.getParameter("add_email");
+                    String firstName = request.getParameter("add_first_name");
+                    String lastName = request.getParameter("add_last_name");
+                    String password = request.getParameter("add_password");
+                    String userType = request.getParameter("add_user_type");
+                    switch (userType) {
+                        case "sys_admin":
+                            userTypeInt = 1;
+                            break;
+                        case "reg_user":
+                            userTypeInt = 2;
+                            break;
+                        case "comp_admin":
+                            userTypeInt = 3;
+                            break;
+                    }
                     Boolean valid = false;
                     String regex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
                     Pattern pattern = Pattern.compile(regex);
@@ -108,7 +107,7 @@ public class UserServlet extends HttpServlet {
                         editEmail = request.getParameter("user_email");
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
-                        
+
                         // populate the fields the current values
                         // not sure how to automatically populate the radio buttons or dropdowns so code is commented out for now
                         request.setAttribute("edit_email", editEmail);
@@ -118,41 +117,41 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("edit_password", editUser.getPassword());
                         // request.setAttribute("edit_user_type", editUser.getRole());
                     } catch (Exception ex) {
-                        
+
                     }
                     break;
                 case "save_edits":
-                        try {
-                            // get the fields in the edit window
-                            
-                            editEmail = request.getParameter("edit_email");
-                            String editFirstName = request.getParameter("edit_first_name");
-                            String editLastName = request.getParameter("edit_last_name");
-                            String editActive = request.getParameter("status");
-                            boolean active = false;
-                            if (editActive.equals("active")) {
-                                active = true;
-                            }
-                            String editPassword = request.getParameter("edit_password");
-                            String editUserType = request.getParameter("edit_user_type");
-                            // assigns an int corresponding to the relevant role
-                            int editRole = 0;
-                                switch (editUserType) {
-                                    case "sys_admin" :
-                                        editRole = 1;
-                                    break;
-                                    case "reg_user" :
-                                        editRole = 2;
-                                    break;
-                                    case "comp_admin" :
-                                        editRole = 3;
-                                    break;
-                                }
-                                // updates the database with the new info
-                            userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
-                        } catch (Exception ex){
-                            
+                    try {
+                        // get the fields in the edit window
+
+                        editEmail = request.getParameter("edit_email");
+                        String editFirstName = request.getParameter("edit_first_name");
+                        String editLastName = request.getParameter("edit_last_name");
+                        String editActive = request.getParameter("status");
+                        boolean active = false;
+                        if (editActive.equals("active")) {
+                            active = true;
                         }
+                        String editPassword = request.getParameter("edit_password");
+                        String editUserType = request.getParameter("edit_user_type");
+                        // assigns an int corresponding to the relevant role
+                        int editRole = 0;
+                        switch (editUserType) {
+                            case "sys_admin":
+                                editRole = 1;
+                                break;
+                            case "reg_user":
+                                editRole = 2;
+                                break;
+                            case "comp_admin":
+                                editRole = 3;
+                                break;
+                        }
+                        // updates the database with the new info
+                        userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
+                    } catch (Exception ex) {
+
+                    }
                     break;
             }
         }
