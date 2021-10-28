@@ -11,8 +11,8 @@
         <title>User Management</title>
     </head>
     <body>
-        
-        
+
+
         <div id="add_container">
             <form method="POST" action="" id="add_form">            
                 <h2 id="add_title">Add User</h2>
@@ -40,28 +40,28 @@
                     </select> 
                 </div>
                 <div>
-                <input type="submit" value="Save" id="add_save">
-                <input type="hidden" name="action" value="add_save">
+                    <input type="submit" value="Save" id="add_save">
+                    <input type="hidden" name="action" value="add_save">
                 </div>
             </form>
         </div>
-        
-        
-        
-        <form method="POST" action="">
-            <div id="manage_container">
-                <h2 id="manage_title">Manage Users</h2>
-                <div id='head_manage_users' class='header'>
-                    <span id='head_email'>Email</span>
-                    <span id='head_first_name'>First Name</span>
-                    <span id='head_last_name'>Last Name</span>
-                    <span id='head_role'>Role</span>
-                    <span id='head_status'>Status</span>
-                    <span id='head_edit'>Edit</span>
-                    <span id='head_delete'>Delete</span>
-                </div>
-                <div>
-                    <c:forEach var="user" items="${users}">
+
+
+
+        <div id="manage_container">
+            <h2 id="manage_title">Manage Users</h2>
+            <div id='head_manage_users' class='header'>
+                <span id='head_email'>Email</span>
+                <span id='head_first_name'>First Name</span>
+                <span id='head_last_name'>Last Name</span>
+                <span id='head_role'>Role</span>
+                <span id='head_status'>Status</span>
+                <span id='head_edit'>Edit</span>
+                <span id='head_delete'>Delete</span>
+            </div>
+            <div>
+                <c:forEach var="user" items="${users}">
+                    <form method="POST" action="">
                         <div id="row_manage_users">
                             <span class='user_email'>${user.getEmail()}</span>
                             <span class='user_first_name'>${user.getFirstName()}</span>
@@ -77,20 +77,21 @@
                                 <input type="hidden" name="action" value="delete_user">
                             </span>
                         </div>
-                    </c:forEach>
-                </div>
+                    </form>
+                </c:forEach>
             </div>
-        </form>
-        
-        
-        
-        
+        </div>
+
+
+
+
+
         <div id="edit_container">
             <form method="POST" action="" id="edit_form">
                 <h2 id="edit_title">Edit User</h2>
                 <div>
                     <input type="text" name="edit_email" class="entry" readonly required>
-                     <label class="input_label">Email</label>
+                    <label class="input_label">Email</label>
                 </div>
                 <div>
                     <input type="text" name="edit_first_name" class="entry" required>
@@ -119,16 +120,16 @@
                     </select> 
                 </div>
                 <div>
-                <input type="submit" value="Save" id="edit_save">
-                <input type="hidden" name="action" value="edit_save">
+                    <input type="submit" value="Save" id="edit_save">
+                    <input type="hidden" name="action" value="edit_save">
                 </div>
             </form>
         </div>
         <div id="message_box"
-            <h2>${message}</h2>
+             <h2>${message}</h2>
             <h2> hi</h2>
         </div>
-        
-        
+
+
     </body>
 </html>
