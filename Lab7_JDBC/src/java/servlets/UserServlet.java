@@ -67,7 +67,7 @@ public class UserServlet extends HttpServlet {
                     if (matcher.matches()) {
                         valid = true;
                     }
-                    regex = "^[a-zA-Z0-9._-]{3,}$";
+                    regex = "^[a-zA-Z0-9._-]{2,}$";
                     pattern = Pattern.compile(regex);
                     matcher = pattern.matcher(firstName);
                     if (!matcher.matches()) {
