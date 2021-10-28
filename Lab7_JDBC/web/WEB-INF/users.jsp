@@ -59,6 +59,18 @@
                 <span id='head_edit'>Edit</span>
                 <span id='head_delete'>Delete</span>
             </div>
+            <div>
+            <c:forEach var="user" items="${users}">
+                <div id="row_manage_users">
+                    <span id='head_email'>${user.getEmail()}</span>
+                    <span id='head_first_name'>${user.getFirst_name()}</span>
+                    <span id='head_last_name'>${user.getLast_name()}</span>
+                    <span id='head_role'>${user.getRole()}</span>
+                    <span id='head_edit'>Pencil</span>
+                    <span id='head_delete'>Delete</span>
+                <div>
+            </c:forEach>
+            </div>
         </div>
         
         

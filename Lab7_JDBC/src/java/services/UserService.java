@@ -17,16 +17,16 @@ public class UserService {
         return users;
     }
     
-    public void insert(String email, boolean active, String first_name, String last_name, String password, int role) throws Exception {
-        User user = new User(email, active, first_name, last_name, password, role);
+    public void insert(String email, boolean active, String firstName, String lastName, String password, int role) throws Exception {
+        User user = new User(email, active, firstName, lastName, password, role);
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }
     
     // should not be able to update the user's email but email is needed to construct user object
     // please work
-    public void update(String email, boolean active, String first_name, String last_name, String password, int role) throws Exception {
-        User user = new User(email, active, first_name, last_name, password, role);
+    public void update(String email, boolean active, String firstName, String lastName, String password, int role) throws Exception {
+        User user = new User(email, active, firstName, lastName, password, role);
         UserDB userDB = new UserDB();
         userDB.update(user);
     }
