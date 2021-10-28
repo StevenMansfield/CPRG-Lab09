@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,6 +43,8 @@ public class UserServlet extends HttpServlet {
         String lastName = request.getParameter("add_last_name");
         String password = request.getParameter("add_password");
         String userType = request.getParameter("add_user_type");
+        String editEmail = "";
+        
         int userTypeInt = 0;
 
         switch (userType) {
@@ -56,6 +60,14 @@ public class UserServlet extends HttpServlet {
         }
 
         UserService userService = new UserService();
+
+        List<User> users = null;
+        try {
+            users = userService.getAll();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("users", users);
 
         if (myAction != null) {
             switch (myAction) {
@@ -91,9 +103,51 @@ public class UserServlet extends HttpServlet {
                     }
                 }
                 break;
-
-                case "edit_save":
-
+                case "edit_user":
+                    try {
+                        editEmail = request.getParameter("user_email");
+                        // get the user based on the email
+                        User editUser = userService.get(editEmail);
+                        
+                        // populate the fields the current values
+                        request.setAttribute("edit_email", editEmail);
+                        request.setAttribute("edit_active", editUser.getActive());
+                        request.setAttribute("edit_first_name", editUser.getFirst_name());
+                        request.setAttribute("edit_last_name", editUser.getLast_name());
+                        request.setAttribute("edit_password", editUser.getPassword());
+                        request.setAttribute("edit_user_type", editUser.getRole());
+                    } catch (Exception ex) {
+                        
+                    }
+                    break;
+                case "save_edits":
+                        try {
+                            // get the fields in the edit window
+                            
+                            editEmail = request.getParameter("edit_email");
+                            String editFirstName = request.getParameter("edit_first_name");
+                            String editLastName = request.getParameter("edit_last_name");
+                            boolean editActive = request.getParameter("edit_active");
+                            String editPassword = request.getParameter("edit_password");
+                            String editUserType = request.getParameter("edit_user_type");
+                            // assigns an int corresponding to the relevant role
+                            int editRole = 0;
+                                switch (editUserType) {
+                                    case "sys_admin" :
+                                        editRole = 1;
+                                    break;
+                                    case "reg_user" :
+                                        editRole = 2;
+                                    break;
+                                    case "comp_admin" :
+                                        editRole = 3;
+                                    break;
+                                }
+                                // updates the database with the new info
+                            userService.update(editEmail, editActive, editFirstName, editLastName, editPassword, editRole);
+                        } catch (Exception ex){
+                            
+                        }
                     break;
             }
         }
