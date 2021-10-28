@@ -91,7 +91,7 @@
             <form method="POST" action="" id="edit_form">
                 <h2 id="edit_title">Edit User</h2>
                 <div>
-                    <input type="text" name="edit_email" class="entry" value="${edit_email}" readonly required>
+                    <input type="text" name="edit_email" class="entry" value="${edit_email}" contentEditable="false" required>
                     <label class="input_label">Email</label>
                 </div>
                 <div>
