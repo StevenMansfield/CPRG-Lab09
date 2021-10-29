@@ -61,7 +61,6 @@
             </div>
             <div>
                 <c:forEach var="user" items="${users}">
-                    <form method="POST" action="">
                         <div id="row_manage_users">
                             <span class='user_email'>${user.getEmail()}</span>
                             <span class='user_first_name'>${user.getFirstName()}</span>
@@ -69,16 +68,20 @@
                             <span class='user_role'>${user.getRole()}</span>
                             <span class='user_status'>${user.getActive()}</span>
                             <span class='user_edit'>
-                                <input type="image" src="./sources/images/pencil.png" alt="Edit" width="15" height="15">
-                                <input type="hidden" name="action" value="edit_user">
-                                <input type="hidden" name="user_email" value="${user.getEmail()}">
+                                <form method="POST" action="">
+                                    <input type="image" src="./sources/images/pencil.png" alt="Edit" width="15" height="15">
+                                    <input type="hidden" name="action" value="edit_user">
+                                    <input type="hidden" name="user_email" value="${user.getEmail()}">
+                                </form>
                             </span>
                             <span class='user_delete'>
-                                <input type="image" src="./sources/images/trash.png" alt="Delete" width="15" height="15">
-                                <input type="hidden" name="action" value="delete_user">
+                                <form method="POST" action="">
+                                    <input type="image" src="./sources/images/trash.png" alt="Delete" width="15" height="15">
+                                    <input type="hidden" name="action" value="delete_user">
+                                    <input type="hidden" name="user_email" value="${user.getEmail()}">
+                                </form>
                             </span>
                         </div>
-                    </form>
                 </c:forEach>
             </div>
         </div>
