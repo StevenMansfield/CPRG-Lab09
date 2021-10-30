@@ -65,8 +65,29 @@
                             <span class='user_email'>${user.getEmail()}</span>
                             <span class='user_first_name'>${user.getFirstName()}</span>
                             <span class='user_last_name'>${user.getLastName()}</span>
-                            <span class='user_role'>${user.getRole()}</span>
-                            <span class='user_status'>${user.getActive()}</span>
+                            <span class='user_role'>
+                                <c:choose>
+                                    <c:when test = "${user.getRole() == 1}">
+                                        System Admin
+                                    </c:when>
+                                    <c:when test = "${user.getRole() == 2}">
+                                        Regular User
+                                    </c:when>
+                                    <c:when test = "${user.getRole() == 3}">
+                                        Company Admin
+                                    </c:when>
+                                </c:choose>
+                            </span>
+                            <span class='user_status'>
+                                <c:choose>
+                                    <c:when test = "${user.getActive()}">
+                                        Active
+                                    </c:when>
+                                    <c:otherwise>
+                                        Inactive
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
                             <span class='user_edit'>
                                 <form method="POST" action="">
                                     <input type="image" src="./sources/images/pencil.png" alt="Edit" width="15" height="15">
