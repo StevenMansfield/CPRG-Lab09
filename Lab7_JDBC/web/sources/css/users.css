@@ -46,11 +46,11 @@
         margin-left: 10px;
     }
     
-    #head_first_name, .user_first_name, #head_last_name, .user_last_name {
+    #head_first_name, .user_first_name, #head_last_name, .user_last_name, #head_role, .user_role  {
         width: 150px;
     }
     
-    #head_role, .user_role, #head_edit, .user_edit, #head_status, .user_status, #head_delete, .user_delete {
+    #head_edit, .user_edit, #head_status, .user_status, #head_delete, .user_delete {
         width: 75px;
     } 
     
