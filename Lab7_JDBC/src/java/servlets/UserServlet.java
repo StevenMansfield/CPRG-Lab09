@@ -94,6 +94,7 @@ public class UserServlet extends HttpServlet {
                 break;
                 case "edit_user": {
                     try {
+                        request.setAttribute("edit_clicked", true);
                         editEmail = request.getParameter("user_email");
 
                         request.setAttribute("message", "Email is " + editEmail);

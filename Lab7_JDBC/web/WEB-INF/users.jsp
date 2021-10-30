@@ -89,44 +89,52 @@
 
 
 
-
         <div id="edit_container">
             <form method="POST" action="" id="edit_form">
                 <h2 id="edit_title">Edit User</h2>
-                <div>
-                    <input type="text" name="edit_email" class="entry readonly_box" value="${edit_email}" readonly>
-                    <label class="input_label">Email</label>
-                </div>
-                <div>
-                    <input type="text" name="edit_first_name" class="entry" value="${edit_first_name}" required>
-                    <label class="input_label">First Name</label>
-                </div>
-                <div>
-                    <input type="text" name="edit_last_name" class="entry" value="${edit_last_name}" required>
-                    <label class="input_label">Last Name</label>
-                </div>
-                <div>
-                    <input type="text" name="edit_password" class="entry" value="${edit_password}" required>
-                    <label class="input_label">Password</label>
-                </div>
-                <div>
-                    <span id="radio_head">User Status</span>
-                    <input type="radio" id="active_status" name="status" value="active">
-                    <label for="active">Active</label><br>
-                    <input type="radio" id="inactive_status" name="status" value="inactive">
-                    <label for="inactive">Inactive</label>
-                </div>
-                <div>
-                    <select name="edit_user_type">
-                        <option value="sys_admin">System Admin</option>
-                        <option value="reg_user">Regular User</option>
-                        <option value="comp_admin">Company Admin</option>
-                    </select> 
-                </div>
-                <div>
-                    <input type="submit" value="Save" id="edit_save">
-                    <input type="hidden" name="action" value="edit_save">
-                </div>
+                <c:choose>
+                    <c:when test="${edit_clicked}">
+                        <div>
+                            <input type="text" name="edit_email" class="entry readonly_box" value="${edit_email}" readonly>
+                            <label class="input_label">Email</label>
+                        </div>
+                        <div>
+                            <input type="text" name="edit_first_name" class="entry" value="${edit_first_name}" required>
+                            <label class="input_label">First Name</label>
+                        </div>
+                        <div>
+                            <input type="text" name="edit_last_name" class="entry" value="${edit_last_name}" required>
+                            <label class="input_label">Last Name</label>
+                        </div>
+                        <div>
+                            <input type="text" name="edit_password" class="entry" value="${edit_password}" required>
+                            <label class="input_label">Password</label>
+                        </div>
+                        <div>
+                            <span id="radio_head">User Status</span>
+                            <input type="radio" id="active_status" name="status" value="active">
+                            <label for="active">Active</label><br>
+                            <input type="radio" id="inactive_status" name="status" value="inactive">
+                            <label for="inactive">Inactive</label>
+                        </div>
+                        <div>
+                            <select name="edit_user_type">
+                                <option value="sys_admin">System Admin</option>
+                                <option value="reg_user">Regular User</option>
+                                <option value="comp_admin">Company Admin</option>
+                            </select> 
+                        </div>
+                        <div>
+                            <input type="submit" value="Save" id="edit_save">
+                            <input type="hidden" name="action" value="edit_save">
+                        </div>
+                    </c:when>
+                    <c:otherwise> 
+                        <div id="inform">
+                            Click the pencil icon to edit a user
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </form>
         </div>
         <div id="message_box"

@@ -1,14 +1,14 @@
 @media all {
     
     body {
-        display: flex; 
-        justify-content: center; 
+        display: flex;
         font-family: 'Open Sans', sans-serif;
         background-color: #233957;
     }
     
     #add_container, #edit_container {
         width: 20%;
+        height: 500px;
         float: left;
         margin: 10px;
         background: #b2ce9e;
@@ -18,7 +18,7 @@
     }
     
     #manage_container {
-        width: 80%;
+        width: 100%;
         float: left;
         margin: 10px;
         background: #b2ce9e;
@@ -123,5 +123,10 @@
     
     span {
         vertical-align: middle; 
+    }
+    
+    #inform {
+        font-size: 12px;
+        text-align: center; 
     }
 }
