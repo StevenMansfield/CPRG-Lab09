@@ -149,6 +149,16 @@ public class UserServlet extends HttpServlet {
                     }
                 }
                 break;
+                case "delete_user": {
+                    try {
+                        String deleteEmail = request.getParameter("user_email");
+                        userService.delete(deleteEmail);
+                        request.setAttribute("message", "deleted user " + deleteEmail + " successfully");
+                    } catch (Exception ex) {
+                        
+                    }
+                }
+                break;
             }
         }
         List<User> usersList = null;
