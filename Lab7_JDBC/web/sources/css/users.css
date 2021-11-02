@@ -30,6 +30,10 @@
         display: inline-block;
     }
     
+    div#row_manage_users:nth-child(even) {
+        background: #cfedb9;
+    }
+    
     #message_box {
         position: absolute; 
         float: left; 
@@ -62,10 +66,11 @@
     .entry {
         border-radius: 4px; 
         border: 1px solid black;
-        background: transparent; 
+        /* background: transparent; */ 
         font-size: 14px;
         width: 88%;
         height: 25px;
+        background: #f8f5e1;
     }
     
     div {
