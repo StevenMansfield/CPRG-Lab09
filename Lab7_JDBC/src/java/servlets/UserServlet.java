@@ -101,7 +101,7 @@ public class UserServlet extends HttpServlet {
                         // populate the fields the current values
                         // not sure how to automatically populate the radio buttons or dropdowns so code is commented out for now
                         request.setAttribute("edit_email", editEmail);
-                        // request.setAttribute("edit_active", editUser.getActive());
+                        request.setAttribute("edit_active", editUser.getActive());
                         request.setAttribute("edit_first_name", editUser.getFirstName());
                         request.setAttribute("edit_last_name", editUser.getLastName());
                         request.setAttribute("edit_password", editUser.getPassword());

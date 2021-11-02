@@ -133,9 +133,9 @@
                         </div>
                         <div>
                             <span id="radio_head">User Status</span>
-                            <input type="radio" id="active_status" name="status" value="active" checked>
+                            <input type="radio" id="active_status" name="status" value="active" ${edit_active==true?"checked":""}>
                             <label for="active" >Active</label><br>
-                            <input type="radio" id="inactive_status" name="status" value="inactive">
+                            <input type="radio" id="inactive_status" name="status" value="inactive" ${edit_active==false?"checked":""}>
                             <label for="inactive">Inactive</label>
                         </div>
                         <div>
