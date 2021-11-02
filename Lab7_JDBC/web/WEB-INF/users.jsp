@@ -140,9 +140,9 @@
                         </div>
                         <div>
                             <select name="edit_user_type">
-                                <option ${edit_user_type=="sys_admin"?"selected":""} value="sys_admin">System Admin</option>
-                                <option ${edit_user_type=="reg_user"?"selected":""} value="reg_user">Regular User</option>
-                                <option ${edit_user_type=="comp_admin"?"selected":""} value="comp_admin">Company Admin</option>
+                                <option ${edit_user_type=="1"?"selected":""} value="sys_admin">System Admin</option>
+                                <option ${edit_user_type=="2"?"selected":""} value="reg_user">Regular User</option>
+                                <option ${edit_user_type=="3"?"selected":""} value="comp_admin">Company Admin</option>
                             </select> 
                         </div>
                         <div>
