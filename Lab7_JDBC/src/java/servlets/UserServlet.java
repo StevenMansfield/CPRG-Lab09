@@ -45,6 +45,7 @@ public class UserServlet extends HttpServlet {
         if (myAction != null) {
             switch (myAction) {
                 case "add_save": {
+                    // retrieves data from request page
                     String email = request.getParameter("add_email");
                     String firstName = request.getParameter("add_first_name");
                     String lastName = request.getParameter("add_last_name");
@@ -61,6 +62,7 @@ public class UserServlet extends HttpServlet {
                             userTypeInt = 3;
                             break;
                     }
+                    // checks if input is valid
                     Boolean valid = false;
                     String regex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
                     Pattern pattern = Pattern.compile(regex);
@@ -82,13 +84,9 @@ public class UserServlet extends HttpServlet {
                     if (valid) {
                         try {
                             userService.insert(email, true, firstName, lastName, password, userTypeInt);
-                            request.setAttribute("message", "added user " + email + " successfully");
                         } catch (Exception ex) {
-                            request.setAttribute("message", "user " + email + " not successfully added. DB error");
                             java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } else {
-                        request.setAttribute("message", "user " + email + " not successfully added. Input not valid");
                     }
                 }
                 break;
@@ -97,7 +95,6 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("edit_clicked", true);
                         editEmail = request.getParameter("user_email");
 
-                        request.setAttribute("message", "Email is " + editEmail);
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
 
@@ -143,7 +140,6 @@ public class UserServlet extends HttpServlet {
                         }
                         // updates the database with the new info
                         userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
-                        request.setAttribute("message", "edit user " + editEmail + " successfully");
                     } catch (Exception ex) {
 
                     }
@@ -153,7 +149,6 @@ public class UserServlet extends HttpServlet {
                     try {
                         String deleteEmail = request.getParameter("user_email");
                         userService.delete(deleteEmail);
-                        request.setAttribute("message", "deleted user " + deleteEmail + " successfully");
                     } catch (Exception ex) {
                         
                     }
