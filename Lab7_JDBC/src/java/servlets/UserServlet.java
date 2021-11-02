@@ -105,7 +105,7 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("edit_first_name", editUser.getFirstName());
                         request.setAttribute("edit_last_name", editUser.getLastName());
                         request.setAttribute("edit_password", editUser.getPassword());
-                        // request.setAttribute("edit_user_type", editUser.getRole());
+                        request.setAttribute("edit_user_type", editUser.getRole());
                     } catch (Exception ex) {
 
                     }
