@@ -10,57 +10,61 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
         <title>User Management</title>
     </head>
+
     <body>
-
-
-        <div id="add_container">
-            <form method="POST" action="" id="add_form">            
-                <h2 id="add_title">Add User</h2>
-                <div>
-                    <input type="text" name="add_email" class="entry" required>
-                    <label class="input_label">Email</label>
-                </div>
-                <div>
-                    <input type="text" name="add_first_name" class="entry" required>
-                    <label class="input_label">First Name</label>
-                </div>
-                <div>
-                    <input type="text" name="add_last_name" class="entry" required>
-                    <label class="input_label">Last Name</label>
-                </div>
-                <div>
-                    <input type="text" name="add_password" class="entry" required>
-                    <label class="input_label">Password</label>
-                </div>
-                <div>
-                    <select name="add_user_type">
-                        <option value="sys_admin">System Admin</option>
-                        <option value="reg_user">Regular User</option>
-                        <option value="comp_admin">Company Admin</option>
-                    </select> 
-                </div>
-                <div>
-                    <input type="submit" value="Save" id="add_save">
-                    <input type="hidden" name="action" value="add_save">
-                </div>
-            </form>
+        <div class="header">
+            Users
         </div>
 
-
-
-        <div id="manage_container">
-            <h2 id="manage_title">Manage Users</h2>
-            <div id='head_manage_users' class='header'>
-                <span id='head_email'>Email</span>
-                <span id='head_first_name'>First Name</span>
-                <span id='head_last_name'>Last Name</span>
-                <span id='head_role'>Role</span>
-                <span id='head_status'>Status</span>
-                <span id='head_edit'>Edit</span>
-                <span id='head_delete'>Delete</span>
+        <div class="bodydiv">
+            <div id="add_container">
+                <form method="POST" action="" id="add_form">            
+                    <h2 id="add_title">Add User</h2>
+                    <div>
+                        <input type="text" name="add_email" class="entry" required>
+                        <label class="input_label">Email</label>
+                    </div>
+                    <div>
+                        <input type="text" name="add_first_name" class="entry" required>
+                        <label class="input_label">First Name</label>
+                    </div>
+                    <div>
+                        <input type="text" name="add_last_name" class="entry" required>
+                        <label class="input_label">Last Name</label>
+                    </div>
+                    <div>
+                        <input type="text" name="add_password" class="entry" required>
+                        <label class="input_label">Password</label>
+                    </div>
+                    <div>
+                        <select name="add_user_type">
+                            <option value="sys_admin">System Admin</option>
+                            <option value="reg_user">Regular User</option>
+                            <option value="comp_admin">Company Admin</option>
+                        </select> 
+                    </div>
+                    <div>
+                        <input type="submit" value="Save" id="add_save">
+                        <input type="hidden" name="action" value="add_save">
+                    </div>
+                </form>
             </div>
-            <div>
-                <c:forEach var="user" items="${users}">
+
+
+
+            <div id="manage_container">
+                <h2 id="manage_title">Manage Users</h2>
+                <div id='head_manage_users'>
+                    <span id='head_email'>Email</span>
+                    <span id='head_first_name'>First Name</span>
+                    <span id='head_last_name'>Last Name</span>
+                    <span id='head_role'>Role</span>
+                    <span id='head_status'>Status</span>
+                    <span id='head_edit'>Edit</span>
+                    <span id='head_delete'>Delete</span>
+                </div>
+                <div>
+                    <c:forEach var="user" items="${users}">
                         <div id="row_manage_users">
                             <span class='user_email'>${user.getEmail()}</span>
                             <span class='user_first_name'>${user.getFirstName()}</span>
@@ -103,60 +107,65 @@
                                 </form>
                             </span>
                         </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
+            </div>
+
+
+
+
+            <div id="edit_container">
+                <form method="POST" action="" id="edit_form">
+                    <h2 id="edit_title">Edit User</h2>
+                    <c:choose>
+                        <c:when test="${edit_clicked}">
+                            <div>
+                                <input type="text" name="edit_email" class="entry readonly_box" value="${edit_email}" readonly>
+                                <label class="input_label">Email</label>
+                            </div>
+                            <div>
+                                <input type="text" name="edit_first_name" class="entry" value="${edit_first_name}" required>
+                                <label class="input_label">First Name</label>
+                            </div>
+                            <div>
+                                <input type="text" name="edit_last_name" class="entry" value="${edit_last_name}" required>
+                                <label class="input_label">Last Name</label>
+                            </div>
+                            <div>
+                                <input type="text" name="edit_password" class="entry" value="${edit_password}" required>
+                                <label class="input_label">Password</label>
+                            </div>
+                            <div>
+                                <span id="radio_head">User Status</span>
+                                <input type="radio" id="active_status" name="status" value="active" ${edit_active==true?"checked":""}>
+                                <label for="active_status" >Active</label><br>
+                                <input type="radio" id="inactive_status" name="status" value="inactive" ${edit_active==false?"checked":""}>
+                                <label for="inactive_status">Inactive</label>
+                            </div>
+                            <div>
+                                <select name="edit_user_type">
+                                    <option ${edit_user_type=="1"?"selected":""} value="sys_admin">System Admin</option>
+                                    <option ${edit_user_type=="2"?"selected":""} value="reg_user">Regular User</option>
+                                    <option ${edit_user_type=="3"?"selected":""} value="comp_admin">Company Admin</option>
+                                </select> 
+                            </div>
+                            <div>
+                                <input type="submit" value="Save" id="edit_save">
+                                <input type="hidden" name="action" value="edit_save">
+                            </div>
+                        </c:when>
+                        <c:otherwise> 
+                            <div id="inform">
+                                Click the pencil icon to edit a user
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </form>
             </div>
         </div>
-
-
-
-
-        <div id="edit_container">
-            <form method="POST" action="" id="edit_form">
-                <h2 id="edit_title">Edit User</h2>
-                <c:choose>
-                    <c:when test="${edit_clicked}">
-                        <div>
-                            <input type="text" name="edit_email" class="entry readonly_box" value="${edit_email}" readonly>
-                            <label class="input_label">Email</label>
-                        </div>
-                        <div>
-                            <input type="text" name="edit_first_name" class="entry" value="${edit_first_name}" required>
-                            <label class="input_label">First Name</label>
-                        </div>
-                        <div>
-                            <input type="text" name="edit_last_name" class="entry" value="${edit_last_name}" required>
-                            <label class="input_label">Last Name</label>
-                        </div>
-                        <div>
-                            <input type="text" name="edit_password" class="entry" value="${edit_password}" required>
-                            <label class="input_label">Password</label>
-                        </div>
-                        <div>
-                            <span id="radio_head">User Status</span>
-                            <input type="radio" id="active_status" name="status" value="active" ${edit_active==true?"checked":""}>
-                            <label for="active_status" >Active</label><br>
-                            <input type="radio" id="inactive_status" name="status" value="inactive" ${edit_active==false?"checked":""}>
-                            <label for="inactive_status">Inactive</label>
-                        </div>
-                        <div>
-                            <select name="edit_user_type">
-                                <option ${edit_user_type=="1"?"selected":""} value="sys_admin">System Admin</option>
-                                <option ${edit_user_type=="2"?"selected":""} value="reg_user">Regular User</option>
-                                <option ${edit_user_type=="3"?"selected":""} value="comp_admin">Company Admin</option>
-                            </select> 
-                        </div>
-                        <div>
-                            <input type="submit" value="Save" id="edit_save">
-                            <input type="hidden" name="action" value="edit_save">
-                        </div>
-                    </c:when>
-                    <c:otherwise> 
-                        <div id="inform">
-                            Click the pencil icon to edit a user
-                        </div>
-                    </c:otherwise>
-                </c:choose>
-            </form>
+        <div class="footer">
+            2021 - Authors: David Barringer, Desmond Clarke, Steven Mansfield, Osama Najeeb, Kai Skaar
         </div>
     </body>
+
 </html>
