@@ -125,6 +125,7 @@ public class UserServlet extends HttpServlet {
                 break;
                 case "edit_save": {
                     try {
+                        // uses a session to retain fields if there is an error
                         HttpSession session = request.getSession();
                         // get the fields in the edit window
 
