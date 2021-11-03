@@ -89,6 +89,15 @@ public class UserServlet extends HttpServlet {
                             java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+                    else {
+                        // fills in the fields with the information provided if there was an error
+                        request.setAttribute("add_email", email);
+                        request.setAttribute("add_first_name", firstName);
+                        request.setAttribute("add_last_name", lastName);
+                        request.setAttribute("add_password", password);
+                        request.setAttribute("add_user_type", userTypeInt);
+                        request.setAttribute("addMessage", "Invalid Entry. Email must be valid, names must be at least two characters and contain valid characters. Password must contain valid characters.");
+                    }
                 }
                 break;
                 case "edit_user": {
@@ -102,7 +111,7 @@ public class UserServlet extends HttpServlet {
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
 
-                        // populate the fields the current values
+                        // populate the fields with the current values
                         request.setAttribute("edit_email", editEmail);
                         request.setAttribute("edit_active", editUser.getActive());
                         request.setAttribute("edit_first_name", editUser.getFirstName());
@@ -129,6 +138,7 @@ public class UserServlet extends HttpServlet {
                         }
                         String editPassword = request.getParameter("edit_password");
                         String editUserType = request.getParameter("edit_user_type");
+                        
                         // assigns an int corresponding to the relevant role
                         int editRole = 0;
                         switch (editUserType) {
@@ -171,22 +181,21 @@ public class UserServlet extends HttpServlet {
                         }
                         }
                         else {
+                            // fills in the fields with the information provided if there was an error
                             request.setAttribute("edit_clicked", true);
                             editEmail = (String)session.getAttribute("userToEdit");
                         
-                            // get the user based on the email
                             User editUser = userService.get(editEmail);
 
-                            // populate the fields the current values
+                            // populate the fields with the current values
                             request.setAttribute("edit_email", editEmail);
                             request.setAttribute("edit_active", editUser.getActive());
                             request.setAttribute("edit_first_name", editUser.getFirstName());
                             request.setAttribute("edit_last_name", editUser.getLastName());
                             request.setAttribute("edit_password", editUser.getPassword());
                             request.setAttribute("edit_user_type", editUser.getRole());
+                            request.setAttribute("editMessage", "Invalid Entry. Names must be at least two characters, contain valid characters and password must contain valid characters.");
                         }
-                        // updates the database with the new info
-                        // userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
                     } catch (Exception ex) {
                         java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -13,7 +13,7 @@
 
     <body>
         <div class="header">
-            Users
+            Lab 7 JDBC - Users
         </div>
 
         <div class="bodydiv">
@@ -21,31 +21,34 @@
                 <form method="POST" action="" id="add_form">            
                     <h2 id="add_title">Add User</h2>
                     <div>
-                        <input type="text" name="add_email" class="entry" required>
+                        <input type="text" name="add_email" class="entry" value="${add_email}" required>
                         <label class="input_label">Email</label>
                     </div>
                     <div>
-                        <input type="text" name="add_first_name" class="entry" required>
+                        <input type="text" name="add_first_name" class="entry" value="${add_first_name}" required>
                         <label class="input_label">First Name</label>
                     </div>
                     <div>
-                        <input type="text" name="add_last_name" class="entry" required>
+                        <input type="text" name="add_last_name" class="entry" value="${add_last_name}" required>
                         <label class="input_label">Last Name</label>
                     </div>
                     <div>
-                        <input type="text" name="add_password" class="entry" required>
+                        <input type="text" name="add_password" class="entry" value="${add_password}" required>
                         <label class="input_label">Password</label>
                     </div>
                     <div>
                         <select name="add_user_type">
-                            <option value="sys_admin">System Admin</option>
-                            <option value="reg_user">Regular User</option>
-                            <option value="comp_admin">Company Admin</option>
+                            <option ${add_user_type=="1"?"selected":""} value="sys_admin">System Admin</option>
+                            <option ${add_user_type=="2"?"selected":""} value="reg_user">Regular User</option>
+                            <option ${add_user_type=="3"?"selected":""} value="comp_admin">Company Admin</option>
                         </select> 
                     </div>
                     <div>
                         <input type="submit" value="Save" id="add_save">
                         <input type="hidden" name="action" value="add_save">
+                        <div id="error_message">
+                                ${addMessage}
+                        </div>
                     </div>
                 </form>
             </div>
@@ -153,6 +156,9 @@
                                 <input type="submit" value="Save" id="edit_save">
                                 <input type="hidden" name="action" value="edit_save">
                             </div>
+                            <div id="error_message">
+                                ${editMessage}
+                            </div>
                         </c:when>
                         <c:otherwise> 
                             <div id="inform">
@@ -164,7 +170,7 @@
             </div>
         </div>
         <div class="footer">
-            2021 - Authors: David Barringer, Desmond Clarke, Steven Mansfield, Osama Najeeb, Kai Skaar
+            2021 - Authors: David Barringer, Desmond Clarke, Steven Mansfield, Osama Najeeb, Benjamin Porayko, Kai Skaar
         </div>
     </body>
 

@@ -18,7 +18,7 @@
 
     #add_container, #edit_container {
         width: 250px;
-        height: 500px;
+        height: 600px;
         float: left;
         margin: 10px;
         background: #b2ce9e;
@@ -143,21 +143,26 @@
         left: 0;
         top: 0;
         width: 100%;
-        background-color: white;
+        background: #f8f5e1;
         color: black;
         font-size: 30px;
-        font-family: Georgia, serif;
+        font-family: 'Open Sans', sans-serif;
         text-align: center;
         height:50px;
+        font-weight: bold;
     }
     .footer {
         position: fixed;
         left: 0;
         bottom: 0;
         width: 100%;
-        background-color: white;
+        background: #f8f5e1;
         color: black;
+        font-family: 'Open Sans', sans-serif;
         text-align: center;
         height:30px;
+    }
+    #error_message {
+        color: red;
     }
 }
