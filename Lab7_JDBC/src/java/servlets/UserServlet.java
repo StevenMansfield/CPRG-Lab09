@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.User;
 import services.UserService;
 
@@ -92,14 +93,16 @@ public class UserServlet extends HttpServlet {
                 break;
                 case "edit_user": {
                     try {
+                        HttpSession session = request.getSession();
+                        
                         request.setAttribute("edit_clicked", true);
                         editEmail = request.getParameter("user_email");
-
+                        session.setAttribute("userToEdit", editEmail);
+                        
                         // get the user based on the email
                         User editUser = userService.get(editEmail);
 
                         // populate the fields the current values
-                        // not sure how to automatically populate the radio buttons or dropdowns so code is commented out for now
                         request.setAttribute("edit_email", editEmail);
                         request.setAttribute("edit_active", editUser.getActive());
                         request.setAttribute("edit_first_name", editUser.getFirstName());
@@ -107,12 +110,13 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("edit_password", editUser.getPassword());
                         request.setAttribute("edit_user_type", editUser.getRole());
                     } catch (Exception ex) {
-
+                        java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 break;
                 case "edit_save": {
                     try {
+                        HttpSession session = request.getSession();
                         // get the fields in the edit window
 
                         editEmail = request.getParameter("edit_email");
@@ -138,10 +142,53 @@ public class UserServlet extends HttpServlet {
                                 editRole = 3;
                                 break;
                         }
-                        // updates the database with the new info
-                        userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
-                    } catch (Exception ex) {
+                        
+                        // checks if input is valid
+                        Boolean valid = true;
+                        
+                        String regex = "^[a-zA-Z0-9._-]{2,}$";
+                        Pattern pattern = Pattern.compile(regex);
+                        Matcher matcher = pattern.matcher(editFirstName);
+                        if (!matcher.matches()) {
+                            valid = false;
+                        }
+                        matcher = pattern.matcher(editLastName);
+                        if (!matcher.matches()) {
+                            valid = false;
+                        }
+                        regex = "^[a-zA-Z0-9!@#$%^&*+._-]{1,}$";
+                        pattern = Pattern.compile(regex);
+                        matcher = pattern.matcher(editPassword);
+                        if (!matcher.matches()) {
+                            valid = false;
+                        }
+                        if (valid) {
+                            try {
+                                session.invalidate();
+                                userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
+                            } catch (Exception ex) {
+                                java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        }
+                        else {
+                            request.setAttribute("edit_clicked", true);
+                            editEmail = (String)session.getAttribute("userToEdit");
+                        
+                            // get the user based on the email
+                            User editUser = userService.get(editEmail);
 
+                            // populate the fields the current values
+                            request.setAttribute("edit_email", editEmail);
+                            request.setAttribute("edit_active", editUser.getActive());
+                            request.setAttribute("edit_first_name", editUser.getFirstName());
+                            request.setAttribute("edit_last_name", editUser.getLastName());
+                            request.setAttribute("edit_password", editUser.getPassword());
+                            request.setAttribute("edit_user_type", editUser.getRole());
+                        }
+                        // updates the database with the new info
+                        // userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
+                    } catch (Exception ex) {
+                        java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 break;
@@ -150,7 +197,7 @@ public class UserServlet extends HttpServlet {
                         String deleteEmail = request.getParameter("user_email");
                         userService.delete(deleteEmail);
                     } catch (Exception ex) {
-                        
+                        java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 break;
