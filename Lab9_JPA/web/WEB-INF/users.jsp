@@ -13,7 +13,7 @@
 
     <body>
         <div class="header">
-            Lab 7 JDBC - Users
+            Lab 9 JDBC - Users
         </div>
 
         <div class="bodydiv">
@@ -74,13 +74,13 @@
                             <span class='user_last_name'>${user.getLastName()}</span>
                             <span class='user_role'>
                                 <c:choose>
-                                    <c:when test = "${user.getRole() == 1}">
+                                    <c:when test = "${user.getRole().getRoleId() == 1}">
                                         System Admin
                                     </c:when>
-                                    <c:when test = "${user.getRole() == 2}">
+                                    <c:when test = "${user.getRole().getRoleId()  == 2}">
                                         Regular User
                                     </c:when>
-                                    <c:when test = "${user.getRole() == 3}">
+                                    <c:when test = "${user.getRole().getRoleId()  == 3}">
                                         Company Admin
                                     </c:when>
                                 </c:choose>
@@ -147,9 +147,9 @@
                             </div>
                             <div>
                                 <select name="edit_user_type">
-                                    <option ${edit_user_type=="1"?"selected":""} value="sys_admin">System Admin</option>
-                                    <option ${edit_user_type=="2"?"selected":""} value="reg_user">Regular User</option>
-                                    <option ${edit_user_type=="3"?"selected":""} value="comp_admin">Company Admin</option>
+                                    <option ${edit_user_type==1?"selected":""} value="sys_admin">System Admin</option>
+                                    <option ${edit_user_type==2?"selected":""} value="reg_user">Regular User</option>
+                                    <option ${edit_user_type==3?"selected":""} value="comp_admin">Company Admin</option>
                                 </select> 
                             </div>
                             <div>
@@ -170,7 +170,12 @@
             </div>
         </div>
         <div class="footer">
-            2021 - Authors: David Barringer, Desmond Clarke, Steven Mansfield, Osama Najeeb, Benjamin Porayko, Kai Skaar
+            <div>
+                2021 - Authors: David Barringer, Desmond Clarke, Steven Mansfield, Osama Najeeb, Benjamin Porayko, Kai Skaar
+            </div>
+            <div>
+                JPA Edits: Steven Mansfield
+            </div>
         </div>
     </body>
 

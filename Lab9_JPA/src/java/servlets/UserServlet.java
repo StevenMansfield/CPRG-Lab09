@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Role;
 import models.User;
 import services.UserService;
 
@@ -84,7 +85,7 @@ public class UserServlet extends HttpServlet {
 
                     if (valid) {
                         try {
-                            userService.insert(email, true, firstName, lastName, password, userTypeInt);
+                            userService.insert(email, true, firstName, lastName, password, new Role(userTypeInt));
                         } catch (Exception ex) {
                             java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -117,7 +118,7 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("edit_first_name", editUser.getFirstName());
                         request.setAttribute("edit_last_name", editUser.getLastName());
                         request.setAttribute("edit_password", editUser.getPassword());
-                        request.setAttribute("edit_user_type", editUser.getRole());
+                        request.setAttribute("edit_user_type", editUser.getRole().getRoleId());
                     } catch (Exception ex) {
                         java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -176,7 +177,7 @@ public class UserServlet extends HttpServlet {
                         if (valid) {
                             try {
                                 session.invalidate();
-                                userService.update(editEmail, active, editFirstName, editLastName, editPassword, editRole);
+                                userService.update(editEmail, active, editFirstName, editLastName, editPassword, new Role(editRole));
                             } catch (Exception ex) {
                                 java.util.logging.Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
